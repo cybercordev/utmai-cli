@@ -1,0 +1,33 @@
+{
+  "name": "utmai-code",
+  "version": "1.0.0",
+  "description": "CLI asistent de programare — conectat la UTM AI API",
+  "homepage": "https://github.com/cybercordev/utmai-cli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cybercordev/utmai-cli.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "bin/utmai.js",
+  "bin": {
+    "utmai": "./bin/utmai.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node bin/utmai.js",
+    "check": "node --check bin/utmai.js && node --check lib/client.js && node --check lib/config.js && node --check lib/auth.js && node --check lib/tools.js && node --check lib/executor.js && node --check lib/renderer.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "glob": "^10.3.10",
+    "marked": "^9.1.6",
+    "marked-terminal": "^6.1.0"
+  }
+}
