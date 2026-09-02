@@ -1,6 +1,6 @@
 {
   "name": "utmai-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI asistent de programare — conectat la UTM AI API",
   "homepage": "https://github.com/cybercordev/utmai-cli",
   "repository": {
