@@ -318,6 +318,15 @@ async function authenticate({ force = false } = {}) {
   return runLogin();
 }
 
+/** `--name "Laptop birou"` / `--name=…` — numele sub care apare cheia în contul tău. */
+function nameFlag() {
+  const a = process.argv.slice(2);
+  const i = a.indexOf('--name');
+  if (i >= 0 && a[i + 1] && !a[i + 1].startsWith('-')) return a[i + 1];
+  const inline = a.find(x => x.startsWith('--name='));
+  return inline ? inline.slice('--name='.length) : undefined;
+}
+
 async function runLogin() {
   const browserAvailable = auth.hasBrowser();
   renderer.loginMenu(browserAvailable);
@@ -339,6 +348,7 @@ async function runLogin() {
 
   try {
     const creds = await auth.loginWithBrowser({
+      deviceName: nameFlag(),
       onEvent: (e) => {
         if (e.type === 'prompt') renderer.loginPrompt(e.userCode, e.url, e.opened);
       },
@@ -477,6 +487,7 @@ ${chalk.bold.cyan('UTM AI Code')} — Asistent de programare CLI
 ${chalk.bold('Utilizare:')}
   utmai                Pornește interfața interactivă
   utmai login          Autentificare (login în browser sau cheie API)
+  utmai login --name N Autentificare, numind cheia N (implicit: numele mașinii)
   utmai logout         Șterge credențialele locale
   utmai status         Cine ești, cu ce cheie și până când
 

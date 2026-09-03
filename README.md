@@ -44,6 +44,18 @@ confirmi codul afișat în terminal:
 După aprobare, CLI-ul își ia singur cheia de acces (valabilă 90 de zile) și o salvează local. O poți
 revoca oricând din contul tău, secțiunea „Chei API & acces" — apare acolo ca `UTM AI CLI (mașina ta)`.
 
+Numele mașinii vine implicit din `hostname`, ceea ce e util când ai chei de pe mai multe
+calculatoare. Dacă `hostname`-ul tău poartă un nume pe care nu vrei să-l vezi în listă, îl poți
+înlocui:
+
+```bash
+utmai login --name "Laptop birou"        # doar pentru acest login
+export UTMAI_DEVICE_NAME="Laptop birou"  # sau pentru toate (util în CI)
+```
+
+Alternativ, pui `"deviceName": "Laptop birou"` în `~/.utmai/config.json`. Fără niciuna dintre ele,
+comportamentul rămâne cel de până acum.
+
 Pe o mașină fără browser (SSH, server), CLI-ul nu încearcă să deschidă nimic: îți arată adresa și
 codul, le deschizi de pe alt calculator, iar terminalul primește cheia când aprobi.
 
@@ -54,6 +66,7 @@ un `status`, iar cheia o poate ridica doar procesul care a pornit autentificarea
 
 ```bash
 utmai login     # autentificare, sau schimbarea contului
+utmai login --name "Laptop birou"   # idem, numind cheia altfel decât după hostname
 utmai status    # cine ești, cu ce cheie și până când
 utmai logout    # șterge credențialele locale
 ```
